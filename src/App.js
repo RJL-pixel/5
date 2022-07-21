@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from "react-router-dom";
+import {MainLayouts} from "./layouts/MainLayouts";
+import TodosPage from "./pages/TodosPage";
+import AlbumsPage from "./pages/Albums.page";
+import CommentsPage from "./pages/CommentsPage";
+import PostsCurrentComment from "./components/posts/PostsCurrentComment";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export function App() {
+    return (
+        <div>
+          <Routes>
+
+              <Route path={'/'} element={<MainLayouts/>}>
+                  <Route path={'todos'} element={<TodosPage/>}/>
+                  <Route path={'albums'} element={<AlbumsPage/>}/>
+                  <Route path={'comments'} element={<CommentsPage/>}>
+                  <Route path={':postId'} element={<PostsCurrentComment/>}/>
+
+              </Route>
+              </Route>
+        </Routes>
+
+        </div>
+    );
 }
 
-export default App;
